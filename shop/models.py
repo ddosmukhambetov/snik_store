@@ -27,8 +27,8 @@ class Category(models.Model):
             self.slug = slugify(self.title)
         super(Category, self).save(*args, **kwargs)
 
-    # def get_absolute_url(self):
-    #     return reverse('category_detail', kwargs={'pk': self.pk})
+    def get_absolute_url(self):
+        return reverse('shop:category-detail', kwargs={'slug': self.slug})
 
 
 class Product(models.Model):
@@ -55,8 +55,8 @@ class Product(models.Model):
             self.slug = slugify(self.title)
         super(Product, self).save(*args, **kwargs)
 
-    # def get_absolute_url(self):
-    #     return reverse('product_detail', kwargs={'pk': self.pk})
+    def get_absolute_url(self):
+        return reverse('shop:product-detail', kwargs={'slug': self.slug})
 
 
 class ProductManager(models.Manager):
