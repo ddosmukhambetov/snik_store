@@ -1,7 +1,8 @@
-from django.test import TestCase
 from django.core.files.uploadedfile import SimpleUploadedFile
+from django.test import TestCase
 from django.urls import reverse
-from .models import Product, Category, ProductProxy
+
+from .models import Category, Product, ProductProxy
 
 
 class CategoryDetailViewTest(TestCase):
@@ -42,11 +43,11 @@ class ProductViewTest(TestCase):
         self.product_2 = Product.objects.create(title='Test Product 2', category=category, image=uploaded_file)
 
     def test_status_code(self):
-        response = self.client.get(reverse('shop:products'))
+        response = self.client.get(reverse('products'))
         self.assertEqual(response.status_code, 200)
 
     def test_get_products(self):
-        response = self.client.get(reverse('shop:products'))
+        response = self.client.get(reverse('products'))
         self.assertEqual(len(response.context['products']), 2)
         self.assertEqual(list(response.context['products']), [self.product_1, self.product_2])
         self.assertContains(response, self.product_1)
