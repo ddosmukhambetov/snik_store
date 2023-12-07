@@ -26,6 +26,11 @@
             integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
             crossorigin="anonymous"></script>
     <style>
+        .form-layout {
+            border-radius: 20px;
+            width: 500px;
+        }
+
         .badge {
             padding-left: 9px;
             padding-right: 9px;
@@ -241,12 +246,33 @@
                         </span>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link mx-2 text-uppercase" href="#">
-                        <i class="fa-solid fa-circle-user me-1"></i>
-                        Account
-                    </a>
-                </li>
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link mx-2 text-uppercase" href="{% url 'account:dashboard' %}">
+                            <i class="fa-solid fa-circle-user me-1"></i>
+                            Hi, {{ user.username }}
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link mx-2 text-uppercase" href="{% url 'account:logout' %}">
+                            <i class="fa-solid fa-circle-user me-1"></i>
+                            Logout
+                        </a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link mx-2 text-uppercase" href="{% url 'account:register' %}">
+                            <i class="fa-solid fa-circle-user me-1"></i>
+                            Register
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link mx-2 text-uppercase" href="{% url 'account:login' %}">
+                            <i class="fa-solid fa-circle-user me-1"></i>
+                            Login
+                        </a>
+                    </li>
+                {% endif %}
             </ul>
         </div>
     </div>

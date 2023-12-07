@@ -1,7 +1,9 @@
-from django.shortcuts import render, get_object_or_404
-from .cart import Cart
-from shop.models import ProductProxy
 from django.http import JsonResponse
+from django.shortcuts import get_object_or_404, render
+
+from shop.models import ProductProxy
+
+from .cart import Cart
 
 
 def cart_view(request):

@@ -1,10 +1,12 @@
 import json
 
-from django.test import TestCase, Client, RequestFactory
 from django.contrib.sessions.middleware import SessionMiddleware
+from django.test import Client, RequestFactory, TestCase
 from django.urls import reverse
+
 from shop.views import Category, ProductProxy
-from .views import cart_view, cart_add_view, cart_delete_view, cart_update_view
+
+from .views import cart_add_view, cart_delete_view, cart_update_view, cart_view
 
 
 class CartViewTest(TestCase):
