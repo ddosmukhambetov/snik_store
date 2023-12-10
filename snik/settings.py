@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'shop.apps.ShopConfig',
     'cart.apps.CartConfig',
     'account.apps.AccountConfig',
+    'payment.apps.PaymentConfig',
 ]
 
 MIDDLEWARE = [
@@ -72,6 +73,7 @@ TEMPLATES = [
             BASE_DIR / 'shop/templates',
             BASE_DIR / 'cart/templates',
             BASE_DIR / 'account/templates',
+            BASE_DIR / 'payment/templates',
         ],
         'APP_DIRS': True,
         'OPTIONS': {
