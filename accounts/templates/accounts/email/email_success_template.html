@@ -37,7 +37,7 @@
                 timerValue--;
                 $('#timer').html(timerValue);
                 if (timerValue <= 0) {
-                    window.location.href = "{% url 'products' %}";
+                    window.location.href = "{% url 'accounts:login' %}";
                 }
             }, 1000);
         })

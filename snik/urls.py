@@ -27,7 +27,7 @@ urlpatterns = [
     path('', products_view, name='products'),
     path('shop/', include('shop.urls', namespace='shop')),
     path('cart/', include('cart.urls', namespace='cart')),
-    path('account/', include('account.urls', namespace='account')),
+    path('accounts/', include('accounts.urls', namespace='accounts')),
     path('email-verification/', include(email_urls), name='email-verification'),
     path('payment/', include('payment.urls', namespace='payment')),
 ]

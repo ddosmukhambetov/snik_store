@@ -20,10 +20,10 @@ def register_view(request):
             user = User.objects.create_user(user_username, user_email, user_password)
             user.is_active = False
             send_email(user)
-            return redirect('account:send-email-verification')
+            return redirect('accounts:send-email-verification')
     else:
         form = UserCreateForm()
-    return render(request, 'account/register.html', {'form': form})
+    return render(request, 'accounts/register_login/register.html', {'form': form})
 
 
 def login_view(request):
@@ -36,13 +36,13 @@ def login_view(request):
         user = authenticate(request, username=username, password=password)
         if user:
             login(request, user)
-            return redirect('account:dashboard')
+            return redirect('accounts:dashboard')
         else:
             messages.info(request, 'Username or password is incorrect')
-            return redirect('account:login')
+            return redirect('accounts:login')
     else:
         form = UserLoginForm()
-    return render(request, 'account/login.html', {'form': form})
+    return render(request, 'accounts/register_login/login.html', {'form': form})
 
 
 def logout_view(request):
@@ -50,28 +50,28 @@ def logout_view(request):
     return redirect('products')
 
 
-@login_required(login_url='account:login')
+@login_required(login_url='accounts:login')
 def dashboard_view(request):
-    return render(request, 'account/dashboard.html')
+    return render(request, 'accounts/dashboard/dashboard.html')
 
 
-@login_required(login_url='account:login')
+@login_required(login_url='accounts:login')
 def profile_management_view(request):
     if request.method == 'POST':
         form = UserUpdateForm(request.POST, instance=request.user)
         if form.is_valid():
             form.save()
-            return redirect('account:dashboard')
+            return redirect('accounts:dashboard')
     else:
         form = UserUpdateForm(instance=request.user)
-    return render(request, 'account/profile_management.html', {'form': form})
+    return render(request, 'accounts/dashboard/profile_management.html', {'form': form})
 
 
-@login_required(login_url='account:login')
+@login_required(login_url='accounts:login')
 def delete_user_view(request):
     user = User.objects.get(id=request.user.id)
     if request.method == 'POST':
         user.delete()
         return redirect('products')
     else:
-        return render(request, 'account/delete_user.html')
+        return render(request, 'accounts/dashboard/delete_user.html')

@@ -9,7 +9,7 @@ from .forms import ShippingAddressForm
 from .models import Order, OrderItem, ShippingAddress
 
 
-@login_required(login_url='account:login')
+@login_required(login_url='accounts:login')
 def shipping_view(request):
     try:
         shipping_address = ShippingAddress.objects.get(user=request.user)
@@ -23,7 +23,7 @@ def shipping_view(request):
             shipping_address.user = request.user
             form.save()
             return redirect('cart:cart-view')
-    return render(request, 'payment/shipping.html', {'form': form})
+    return render(request, 'shipping/shipping.html', {'form': form})
 
 
 def checkout_view(request):

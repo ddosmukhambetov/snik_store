@@ -50,7 +50,7 @@ INSTALLED_APPS = [
     # Shop application
     'shop.apps.ShopConfig',
     'cart.apps.CartConfig',
-    'account.apps.AccountConfig',
+    'accounts.apps.AccountConfig',
     'payment.apps.PaymentConfig',
 ]
 
@@ -72,7 +72,7 @@ TEMPLATES = [
         'DIRS': [
             BASE_DIR / 'shop/templates',
             BASE_DIR / 'cart/templates',
-            BASE_DIR / 'account/templates',
+            BASE_DIR / 'accounts/templates',
             BASE_DIR / 'payment/templates',
         ],
         'APP_DIRS': True,
@@ -166,12 +166,12 @@ EMAIL_MULTI_USER = False  # optional (defaults to False)
 
 # Email Verification Settings (mandatory for email sending)
 EMAIL_MAIL_SUBJECT = 'Confirm your email {{ user.username }}'
-EMAIL_MAIL_HTML = 'account/mail_body.html'
-EMAIL_MAIL_PLAIN = 'account/mail_body.txt'
+EMAIL_MAIL_HTML = 'accounts/email/mail_body.html'
+EMAIL_MAIL_PLAIN = 'accounts/email/mail_body.txt'
 EMAIL_MAIL_TOKEN_LIFE = 60 * 60  # one hour
 
 # Email Verification Settings (mandatory for builtin view)
-EMAIL_MAIL_PAGE_TEMPLATE = 'account/email_success_template.html'
+EMAIL_MAIL_PAGE_TEMPLATE = 'accounts/email/email_success_template.html'
 EMAIL_MAIL_CALLBACK = email_verified_callback
 
 # Password Recovery Settings (mandatory for email sending)
