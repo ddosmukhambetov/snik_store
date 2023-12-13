@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     'crispy_forms',
     'crispy_bootstrap5',
     'django_email_verification',
+    'django_google_fonts',
+    'sorl.thumbnail',
 
     # Shop application
     'shop.apps.ShopConfig',
@@ -69,12 +71,7 @@ ROOT_URLCONF = 'snik.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [
-            BASE_DIR / 'shop/templates',
-            BASE_DIR / 'cart/templates',
-            BASE_DIR / 'accounts/templates',
-            BASE_DIR / 'payment/templates',
-        ],
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -194,3 +191,13 @@ EMAIL_HOST_USER = env.str('EMAIL_USER')
 EMAIL_HOST_PASSWORD = env.str('EMAIL_PASSWORD')  # os.environ['password_key'] suggested
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
+
+STRIPE_PUBLISHABLE_KEY = env.str('STRIPE_PUBLIC_KEY')
+STRIPE_SECRET_KEY = env.str('STRIPE_PRIVATE_KEY')
+STRIPE_API_VERSION = env.str('STRIPE_API_VER')
+
+YOOKASSA_SECRET_KEY = env.str('YOOKASSA_PRIVATE_KEY')
+YOOKASSA_SHOP_ID = env.str('YOOKASSA_SHOP_ID')
+
+GOOGLE_FONTS = ['Montserrat:wght@300;400', 'Roboto:wght@300;400']
+GOOGLE_FONTS_DIR = BASE_DIR / 'static/google_fonts'
