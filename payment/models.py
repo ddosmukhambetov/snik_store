@@ -30,6 +30,7 @@ class Order(models.Model):
     amount = models.DecimalField('Amount', max_digits=9, decimal_places=2)
     created_at = models.DateTimeField('Created Date', auto_now_add=True)
     updated_at = models.DateTimeField('Updated Date', auto_now=True)
+    is_paid = models.BooleanField('Is Paid', default=False)
 
     def __str__(self):
         return 'Order object: ' + str(self.id)
