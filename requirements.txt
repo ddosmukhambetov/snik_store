@@ -16,6 +16,7 @@ distro==1.8.0
 Django==4.2.8
 django-celery==3.1.17
 django-celery-beat==2.5.0
+django-celery-results==2.5.1
 django-crispy-forms==2.1
 django-email-verification==0.3.3
 django-google-fonts==0.0.3

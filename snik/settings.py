@@ -48,6 +48,8 @@ INSTALLED_APPS = [
     'django_email_verification',
     'django_google_fonts',
     'sorl.thumbnail',
+    'django_celery_beat',
+    'django_celery_results',
 
     # Shop application
     'shop.apps.ShopConfig',
@@ -202,3 +204,9 @@ YOOKASSA_SHOP_ID = env.str('YOOKASSA_SHOP_ID')
 
 GOOGLE_FONTS = ['Montserrat:wght@300;400', 'Roboto:wght@300;400']
 GOOGLE_FONTS_DIR = BASE_DIR / 'static/google_fonts'
+
+CELERY_BROKER_URL = 'redis://127.0.0.1:6379'
+CELERY_RESULT_BACKEND = 'django-db'
+CELERY_RESULT_EXTENDED = True
+CELERY_BROKER_CONNECTION_RETRY_ON_STARTUP = True
+CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
