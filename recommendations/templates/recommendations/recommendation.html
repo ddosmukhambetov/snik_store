@@ -1,0 +1,51 @@
+{% load static %}
+
+
+{% block custom %}
+    <link rel="stylesheet" href="{% static 'css/recommendations.css' %}">
+{% endblock %}
+
+<div class="reviews-container">
+    <h2 class="reviews-title">Reviews</h2>
+
+    {% if request.user.is_authenticated %}
+        <form method="post" class="review-form">
+            {% csrf_token %}
+            <div>
+                <label for="rating">Rating</label><br>
+                <select name="rating" id="rating">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3" selected>3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+            <div>
+                <label for="content">Comment</label><br>
+                <textarea name="content" id="content" rows="5" cols="50"></textarea>
+            </div>
+            <div>
+                <button class="bg-success text-white">Submit</button>
+            </div>
+        </form>
+    {% endif %}
+
+    {% for review in product.reviews.all %}
+        <div class="d-flex flex-row bd-highlight mb-3 justify-content-between review " id="review-{{ review.id }}">
+            <div>
+                <strong>Date:</strong> {{ review.created_at|date:"Y-m-d" }}<br>
+                <br>
+                <strong>Rating:</strong> {{ review.rating }}/5<br>
+                <strong>Comment:</strong><br>
+                {{ review.content }}
+            </div>
+            {#            <div>#}
+            {#                {% if request.user.is_authenticated and request.user == review.created_by %}#}
+            {#                    {% csrf_token %}#}
+            {#                    <span class="edit-pen" hx-put="{% url 'shop:product-detail' product.slug %}">✏Edit</span>#}
+            {#                {% endif %}#}
+            {#            </div>#}
+        </div>
+    {% endfor %}
+</div>

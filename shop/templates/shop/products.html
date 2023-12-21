@@ -44,4 +44,28 @@
             </div>
         </div>
     </section>
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center mt-3">
+            <li class="page-item {% if not page_obj.has_previous %}disabled{% endif %}">
+                <a class="page-link {% if page_obj.has_previous %}text-success{% endif %} btn-success" href="
+                        {% if page_obj.has_previous %}{% url 'shop:paginator' page_obj.previous_page_number %}{% endif %}">Previous</a>
+            </li>
+            {% for page in page_obj.paginator.page_range %}
+                {% if page_obj.number == page %}
+                    <li class="page-item active" aria-current="page">
+                        <a class="page-link bg-success btn-success" href="{% url 'shop:paginator' page %}">{{ page }}</a>
+                    </li>
+                {% else %}
+                    <li class="page-item">
+                        <a class="page-link text-success btn-success" href="{% url 'shop:paginator' page %}">{{ page }}</a>
+                    </li>
+                {% endif %}
+            {% endfor %}
+            <li class="page-item {% if not page_obj.has_next %}disabled{% endif %}">
+                <a class="page-link {% if page_obj.has_next %}text-success{% endif %} btn-success" href="
+                        {% if page_obj.has_next %}{% url 'shop:paginator' page_obj.next_page_number %}{% endif %}">Next</a>
+            </li>
+        </ul>
+    </nav>
+
 {% endblock %}

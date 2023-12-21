@@ -1,0 +1,50 @@
+<html>
+<body>
+<h1>SNIK Store</h1>
+<p>
+    № Счета: {{ order.id }}<br>
+    <span class="secondary">
+{{ order.created_at|date:"d M, Y" }}
+</span>
+</p>
+<h3>Выписан: {{ order.user }} </h3>
+<p>
+
+    {% with shipping_address=order.shipping_address %}
+        {{ shipping_address.full_name }}<br>
+        {{ shipping_address.email }}<br>
+        {{ shipping_address.street_address }}<br>
+        {{ shipping_address.apartment_address }}<br>
+        {{ shipping_address.zip_code }}, {{ shipping_address.country }}, {{ shipping_address.city }}
+    {% endwith %}
+</p>
+<h3>Выбраны следующие продукты</h3>
+<table>
+    <thead>
+    <tr>
+        <th>Product</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Cost</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for item in order.order_items.all %}
+        <tr class="row{% cycle "1" "2" %}">
+            <td>{{ item.product.title }}</td>
+            <td>${{ item.price }}</td>
+            <td>{{ item.quantity }}</td>
+            <td>${{ item.total_price }}</td>
+        </tr>
+    {% endfor %}
+    <tr class="total">
+        <td colspan="3">Total</td>
+        <td class="num">${{ order.get_total_price }}</td>
+    </tr>
+    </tbody>
+</table>
+<span class="{% if order.is_paid %}paid{% else %}pending{% endif %}">
+    {% if order.is_paid %}Paid{% else %}Pending payment{% endif %}
+    </span>
+</body>
+</html>

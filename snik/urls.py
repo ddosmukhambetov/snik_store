@@ -20,16 +20,17 @@ from django.contrib import admin
 from django.urls import include, path
 from django_email_verification import urls as email_urls
 
-from shop.views import products_view
+from shop.views import ProductsView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', products_view, name='products'),
+    path('', ProductsView.as_view(), name='products'),
     path('shop/', include('shop.urls', namespace='shop')),
     path('cart/', include('cart.urls', namespace='cart')),
     path('accounts/', include('accounts.urls', namespace='accounts')),
     path('email-verification/', include(email_urls), name='email-verification'),
     path('payment/', include('payment.urls', namespace='payment')),
+    path('recommendations/', include('recommendations.urls', namespace='recommendations')),
 ]
 
 if settings.DEBUG:

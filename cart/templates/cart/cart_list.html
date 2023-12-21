@@ -26,9 +26,21 @@
                                 <div class="col border-bottom">
                                     <div class="row p-3">
                                         <div class="col-6">Product</div>
-                                        <div class="col-6 text-end">
-                                            <span class="h6 fw-bold">$ {{ product.price|mul:item.qty }}</span>
-                                        </div>
+                                            {% if product.discount %}
+                                                <div class="col-6 text-end">
+                                                    <span class="text-secondary">
+                                                        Regular Price: {{ product.price|mul:item.qty }}$
+                                                    </span><br>
+                                                    <span class="text-secondary">
+                                                        Discount: {{ product.discount }}%
+                                                    </span><br>
+                                                    <span class="text-secondary">
+                                                        Price with Discount: {{ product.get_discount_price|mul:item.qty }}$
+                                                    </span>
+                                                </div>
+                                            {% else %}
+                                                <div class="col-6 text-end"><span class="h4 fw-bold">{{ product.price }}$</span></div>
+                                            {% endif %}
                                     </div>
                                 </div>
                                 <div class="col">
@@ -65,10 +77,9 @@
             {% endfor %}
             <div class="col-12 text-end">
                 <div class="h6 fw-bold">
-                    Total: $
-                    <div id="total" class="d-inline-flex">
-                        {{ cart.get_total_price }}
-                    </div>
+                    <span class="h4 fw-bold text-success">
+                        Total Price: {{ cart.get_total_price }}$
+                    </span>
                 </div>
                 <button type="button" class="btn btn-success btn-md text-bg-light mt-2">
                     <a href="{% url 'payment:checkout' %}">Buy</a>
