@@ -24,13 +24,14 @@ from shop.views import ProductsView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', ProductsView.as_view(), name='products'),
     path('shop/', include('shop.urls', namespace='shop')),
     path('cart/', include('cart.urls', namespace='cart')),
     path('accounts/', include('accounts.urls', namespace='accounts')),
     path('email-verification/', include(email_urls), name='email-verification'),
     path('payment/', include('payment.urls', namespace='payment')),
     path('recommendations/', include('recommendations.urls', namespace='recommendations')),
+    path('api/v1/', include('api.urls', namespace='api')),
+    path('', ProductsView.as_view(), name='products'),
 ]
 
 if settings.DEBUG:

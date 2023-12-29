@@ -37,6 +37,7 @@ environs==9.5.0
 Faker==21.0.0
 flower==2.0.1
 fonttools==4.47.0
+gunicorn==21.2.0
 html5lib==1.1
 humanize==4.9.0
 idna==3.6
