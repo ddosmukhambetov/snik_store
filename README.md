@@ -17,3 +17,9 @@ You can also generate fake products using the command: `docker exec -it snik_bac
 </a>
 
 Celery, DRF, Swagger & Redoc docs, Stripe and more!
+
+### Infrastructure model
+![Infrastructure main model](.infragenie/infrastructure_main_model.svg)
+- [snik_backend component model](.infragenie/snik_backend_component_model.svg)
+
+---
